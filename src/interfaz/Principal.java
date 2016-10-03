@@ -119,6 +119,11 @@ public class Principal extends javax.swing.JFrame {
         cmdOperaciones.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         cmdOperaciones.setForeground(new java.awt.Color(255, 255, 255));
         cmdOperaciones.setText("Operacion");
+        cmdOperaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdOperacionesActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
 
         cmdLimpiar.setBackground(new java.awt.Color(0, 0, 0));
@@ -177,29 +182,27 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-         int nf, nc;
+        int nf, nc;
         DefaultTableModel tm, tm2;
-            nf = Integer.parseInt(txtNumeroDeFilas.getText());
-            nc = Integer.parseInt(txtNumeroDeColumnas.getText());
+        nf = Integer.parseInt(txtNumeroDeFilas.getText());
+        nc = Integer.parseInt(txtNumeroDeColumnas.getText());
 
-           
+        tm = (DefaultTableModel) tblTablaInicial.getModel();
+        tm2 = (DefaultTableModel) tblTablaResultado.getModel();
 
-                tm = (DefaultTableModel) tblTablaInicial.getModel();
-                tm2 = (DefaultTableModel) tblTablaResultado.getModel();
+        tm.setRowCount(nf);
+        tm.setColumnCount(nc);
 
-                tm.setRowCount(nf);
-                tm.setColumnCount(nc);
+        tm2.setRowCount(nf);
+        tm2.setColumnCount(nc);
 
-                tm2.setRowCount(nf);
-                tm2.setColumnCount(nc);
+        JButton botonesH[] = {cmdManual, cmdAutomatico};
+        JButton botonesD[] = {cmdCrear};
 
-                JButton botonesH[] = {cmdManual, cmdAutomatico};
-                JButton botonesD[] = {cmdCrear};
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
 
-                Helper.habilitarBotones(botonesH);
-                Helper.deshabilitarBotones(botonesD);
-            
-        
+
     }//GEN-LAST:event_cmdCrearActionPerformed
 
     private void cmdManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdManualActionPerformed
@@ -285,6 +288,22 @@ public class Principal extends javax.swing.JFrame {
         Helper.deshabilitarBotones(botonesD);
 
     }//GEN-LAST:event_cmdLimpiarActionPerformed
+
+    private void cmdOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacionesActionPerformed
+        int op = cmbOperacion.getSelectedIndex();
+
+        Helper.limpiadoTabla(tblTablaResultado);
+
+        switch (op) {
+            case 0 :
+                Helper.letraB(tblTablaInicial, tblTablaResultado);
+                break;
+            case 1 :
+                Helper.letraK(tblTablaInicial, tblTablaResultado);
+                break;
+
+        }
+    }//GEN-LAST:event_cmdOperacionesActionPerformed
 
     /**
      * @param args the command line arguments

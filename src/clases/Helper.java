@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author hp 14
  */
 public class Helper {
+
     public static void mensaje(Component ventana, String mensaje, int tipo) {
         switch (tipo) {
             case 1:
@@ -64,4 +65,20 @@ public class Helper {
 
         }
     }
+
+    public static void letraB(JTable tabla1, JTable tabla2) {
+        int nf, nc, aux;
+        nc = tabla1.getColumnCount();
+        nf = tabla1.getRowCount();
+        for (int i = 0; i < nf; i++) {
+            for (int j = 0; j < nc; j++) {
+                aux = (int) tabla1.getValueAt(i, j);
+                if (j == 0 || (i == 0 && j != nc - 1) || (i == nf / 2 && j != nc - 1) || (i == nf - 1 && j != nc - 1)
+                        || (j == nc - 1 && i != 0 && i != nf / 2 && i != nf - 1)) {
+                    tabla2.setValueAt(aux, i, j);
+                }
+            }
+        }
+    }
+
 }
