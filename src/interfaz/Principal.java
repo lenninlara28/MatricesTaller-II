@@ -295,11 +295,20 @@ public class Principal extends javax.swing.JFrame {
         Helper.limpiadoTabla(tblTablaResultado);
 
         switch (op) {
-            case 0 :
+            case 0:
                 Helper.letraB(tblTablaInicial, tblTablaResultado);
                 break;
-            case 1 :
-                Helper.letraK(tblTablaInicial, tblTablaResultado);
+            case 2:
+                Helper.letraM(tblTablaInicial, tblTablaResultado);
+                break;
+            case 3:
+                Helper.letraW(tblTablaInicial, tblTablaResultado);
+                break;
+            case 4:
+                Helper.letraQ(tblTablaInicial, tblTablaResultado);
+                break;
+            case 5:
+                Helper.letraJ(tblTablaInicial, tblTablaResultado);
                 break;
 
         }
