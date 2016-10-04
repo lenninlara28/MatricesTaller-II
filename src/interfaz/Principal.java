@@ -298,6 +298,9 @@ public class Principal extends javax.swing.JFrame {
             case 0:
                 Helper.letraB(tblTablaInicial, tblTablaResultado);
                 break;
+            case 1:
+                Helper.letraK(tblTablaInicial, tblTablaResultado);
+                break;
             case 2:
                 Helper.letraM(tblTablaInicial, tblTablaResultado);
                 break;
@@ -310,8 +313,14 @@ public class Principal extends javax.swing.JFrame {
             case 5:
                 Helper.letraJ(tblTablaInicial, tblTablaResultado);
                 break;
+            case 6 :
+                Helper.letraG(tblTablaInicial, tblTablaResultado);
+                break;
             case 7:
                 Helper.letraR(tblTablaInicial, tblTablaResultado);
+                break;
+            case 8:
+                Helper.figura1(tblTablaInicial, tblTablaResultado);
                 break;
             case 10:
                 Helper.figuraCruz(tblTablaInicial, tblTablaResultado);
