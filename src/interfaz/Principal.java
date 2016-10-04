@@ -70,11 +70,23 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel2.setText("N° Filas :");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        txtNumeroDeFilas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroDeFilasKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNumeroDeFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 30, -1));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel3.setText("N°Columnas :");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+
+        txtNumeroDeColumnas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroDeColumnasKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNumeroDeColumnas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 30, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 330, 70));
@@ -184,25 +196,42 @@ public class Principal extends javax.swing.JFrame {
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
         int nf, nc;
         DefaultTableModel tm, tm2;
-        nf = Integer.parseInt(txtNumeroDeFilas.getText());
-        nc = Integer.parseInt(txtNumeroDeColumnas.getText());
+        if (txtNumeroDeFilas.getText().trim().isEmpty()) {
+            Helper.mensaje(this, "Digite El Numero De Filas ", 2);
+            txtNumeroDeFilas.requestFocusInWindow();
+        } else if (txtNumeroDeColumnas.getText().trim().isEmpty()) {
+            Helper.mensaje(this, "Digite El Numero De Columnas ", 2);
+            txtNumeroDeColumnas.requestFocusInWindow();
+        } else {
+            nf = Integer.parseInt(txtNumeroDeFilas.getText());
+            nc = Integer.parseInt(txtNumeroDeColumnas.getText());
 
-        tm = (DefaultTableModel) tblTablaInicial.getModel();
-        tm2 = (DefaultTableModel) tblTablaResultado.getModel();
+            if (nf == 0) {
+                Helper.mensaje(this, "Numero De Filas No Puede Ser Cero", 3);
+                txtNumeroDeFilas.requestFocusInWindow();
+            } else if (nc == 0) {
+                Helper.mensaje(this, "Numero De Columnas No Puede Ser Cero", 3);
+                txtNumeroDeColumnas.requestFocusInWindow();
+            } else if (nc > 13) {
+                Helper.mensaje(this, "El Numero De Columnas No Puede Ser Mayor A 13", 2);
+                txtNumeroDeColumnas.requestFocusInWindow();
+            } else {
+                tm = (DefaultTableModel) tblTablaInicial.getModel();
+                tm2 = (DefaultTableModel) tblTablaResultado.getModel();
 
-        tm.setRowCount(nf);
-        tm.setColumnCount(nc);
+                tm.setRowCount(nf);
+                tm.setColumnCount(nc);
 
-        tm2.setRowCount(nf);
-        tm2.setColumnCount(nc);
+                tm2.setRowCount(nf);
+                tm2.setColumnCount(nc);
 
-        JButton botonesH[] = {cmdManual, cmdAutomatico};
-        JButton botonesD[] = {cmdCrear};
+                JButton botonesH[] = {cmdManual, cmdAutomatico};
+                JButton botonesD[] = {cmdCrear};
 
-        Helper.habilitarBotones(botonesH);
-        Helper.deshabilitarBotones(botonesD);
-
-
+                Helper.habilitarBotones(botonesH);
+                Helper.deshabilitarBotones(botonesD);
+            }
+        }
     }//GEN-LAST:event_cmdCrearActionPerformed
 
     private void cmdManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdManualActionPerformed
@@ -291,43 +320,67 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacionesActionPerformed
         int op = cmbOperacion.getSelectedIndex();
-
+        int nf, nc;
+        nf = Integer.parseInt(txtNumeroDeFilas.getText());
+        nc = Integer.parseInt(txtNumeroDeColumnas.getText());
         Helper.limpiadoTabla(tblTablaResultado);
+        if (nf < 4 || nf > 13) {
+            Helper.mensaje(this, "Para Que Todas Las Operaciones Se Den \n"
+                    + "El Numero De Filas Debe Ser Mayor A 4 o Menor O Igual A 13", 2);
+        } else if (nc < 4) {
+            Helper.mensaje(this, "Para Que Todas Las Operaciones Se Den \n"
+                    + "El Numero De Columnas Debe Ser Mayor A 4 ", 2);
+        } else {
+            switch (op) {
+                case 0:
+                    Helper.letraB(tblTablaInicial, tblTablaResultado);
+                    break;
+                case 1:
+                    Helper.letraK(tblTablaInicial, tblTablaResultado);
+                    break;
+                case 2:
+                    Helper.letraM(tblTablaInicial, tblTablaResultado);
+                    break;
+                case 3:
+                    Helper.letraW(tblTablaInicial, tblTablaResultado);
+                    break;
+                case 4:
+                    Helper.letraQ(tblTablaInicial, tblTablaResultado);
+                    break;
+                case 5:
+                    Helper.letraJ(tblTablaInicial, tblTablaResultado);
+                    break;
+                case 6:
+                    Helper.letraG(tblTablaInicial, tblTablaResultado);
+                    break;
+                case 7:
+                    Helper.letraR(tblTablaInicial, tblTablaResultado);
+                    break;
+                case 10:
+                    Helper.figuraCruz(tblTablaInicial, tblTablaResultado);
+                    break;
 
-        switch (op) {
-            case 0:
-                Helper.letraB(tblTablaInicial, tblTablaResultado);
-                break;
-            case 1:
-                Helper.letraK(tblTablaInicial, tblTablaResultado);
-                break;
-            case 2:
-                Helper.letraM(tblTablaInicial, tblTablaResultado);
-                break;
-            case 3:
-                Helper.letraW(tblTablaInicial, tblTablaResultado);
-                break;
-            case 4:
-                Helper.letraQ(tblTablaInicial, tblTablaResultado);
-                break;
-            case 5:
-                Helper.letraJ(tblTablaInicial, tblTablaResultado);
-                break;
-            case 6 :
-                Helper.letraG(tblTablaInicial, tblTablaResultado);
-                break;
-            case 7:
-                Helper.letraR(tblTablaInicial, tblTablaResultado);
-                break;
-            case 8:
-                Helper.figura1(tblTablaInicial, tblTablaResultado);
-                break;
-            case 10:
-                Helper.figuraCruz(tblTablaInicial, tblTablaResultado);
-                break;
-
+            }
         }
     }//GEN-LAST:event_cmdOperacionesActionPerformed
+
+    private void txtNumeroDeFilasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDeFilasKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNumeroDeFilasKeyTyped
+
+    private void txtNumeroDeColumnasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDeColumnasKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNumeroDeColumnasKeyTyped
 
     /**
      * @param args the command line arguments
