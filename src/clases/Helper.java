@@ -138,4 +138,32 @@ public class Helper {
             }
         }
     }
+
+    public static void letraR(JTable tabla1, JTable tabla2) {
+        int nf, nc, aux;
+        nc = tabla1.getColumnCount();
+        nf = tabla1.getRowCount();
+        for (int i = 0; i < nf; i++) {
+            for (int j = 0; j < nc; j++) {
+                aux = (int) tabla1.getValueAt(i, j);
+                if (i == 0 || i == nf / 2 || j == 0 || (j == nc - 1 && j / i >= 2) || (i == j && i > nf / 2)) {
+                    tabla2.setValueAt(aux, i, j);
+                }
+            }
+        }
+    }
+
+    public static void figuraCruz(JTable tabla1, JTable tabla2) {
+        int nf, nc, aux;
+        nc = tabla1.getColumnCount();
+        nf = tabla1.getRowCount();
+        for (int i = 0; i < nf; i++) {
+            for (int j = 0; j < nc; j++) {
+                aux = (int) tabla1.getValueAt(i, j);
+                if (i == nf / 2 || i == nf / 2 - 1 || j == nc / 2 || j == nc / 2 - 1) {
+                    tabla2.setValueAt(aux, i, j);
+                }
+            }
+        }
+    }
 }

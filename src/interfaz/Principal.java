@@ -310,6 +310,12 @@ public class Principal extends javax.swing.JFrame {
             case 5:
                 Helper.letraJ(tblTablaInicial, tblTablaResultado);
                 break;
+            case 7:
+                Helper.letraR(tblTablaInicial, tblTablaResultado);
+                break;
+            case 10:
+                Helper.figuraCruz(tblTablaInicial, tblTablaResultado);
+                break;
 
         }
     }//GEN-LAST:event_cmdOperacionesActionPerformed
