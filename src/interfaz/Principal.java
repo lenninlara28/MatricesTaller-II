@@ -333,32 +333,70 @@ public class Principal extends javax.swing.JFrame {
         } else {
             switch (op) {
                 case 0:
-                    Helper.letraB(tblTablaInicial, tblTablaResultado);
+                    if (nf % 2 == 0) {
+                        Helper.mensaje(this, "Para Ver Mejor La Letra ''B'' El Numero De Filas Debe Ser Impar ", 1);
+                    } else {
+                        Helper.letraB(tblTablaInicial, tblTablaResultado);
+                    }
                     break;
                 case 1:
-                    Helper.letraK(tblTablaInicial, tblTablaResultado);
+                    if (nf % 2 == 0) {
+                        Helper.mensaje(this, "Para Ver Mejor La Letra ''K'' El Numero De Filas Debe Ser Impar ", 1);
+                    } else {
+                        Helper.letraK(tblTablaInicial, tblTablaResultado);
+                    }
                     break;
                 case 2:
-                    Helper.letraM(tblTablaInicial, tblTablaResultado);
+                    if (nf % 2 == 0) {
+                        Helper.mensaje(this, "Para Ver Mejor La Letra ''M'' El N°Filas y N°Columnas Debe Ser Impar ", 1);
+                    } else if (nf != nc) {
+                        Helper.mensaje(this, "Para Ver Mejor La Letra ''M'' El N°Filas y N°Columnas Debe Ser Igual ", 1);
+                    } else {
+                        Helper.letraM(tblTablaInicial, tblTablaResultado);
+                    }
                     break;
                 case 3:
-                    Helper.letraW(tblTablaInicial, tblTablaResultado);
+                    if (nf % 2 == 0) {
+                        Helper.mensaje(this, "Para Ver Mejor La Letra ''W'' El N°Filas y N°Columnas Debe Ser Impar ", 1);
+                    } else if (nf != nc) {
+                        Helper.mensaje(this, "Para Ver Mejor La Letra ''W'' El N°Filas y N°Columnas Debe Ser Igual ", 1);
+                    } else {
+                        Helper.letraW(tblTablaInicial, tblTablaResultado);
+                    }
                     break;
                 case 4:
-                    Helper.letraQ(tblTablaInicial, tblTablaResultado);
+                    if (nf != nc) {
+                        Helper.mensaje(this, "Para Ver Mejor La Letra ''Q'' El N°Filas y N°Columnas Debe Ser Igual ", 1);
+                    } else {
+                        Helper.letraQ(tblTablaInicial, tblTablaResultado);
+                    }
                     break;
                 case 5:
                     Helper.letraJ(tblTablaInicial, tblTablaResultado);
                     break;
                 case 6:
+                    if (nf < 6) {
+                        Helper.mensaje(this, "Para Ver Mejor La Letra ''G'' El N°Filas Debe Ser Mayor a 6  ", 1);
+                    }
                     Helper.letraG(tblTablaInicial, tblTablaResultado);
                     break;
                 case 7:
-                    Helper.letraR(tblTablaInicial, tblTablaResultado);
+                    if (nf != nc) {
+                        Helper.mensaje(this, "Para Ver Mejor La Letra ''R'' El N°Filas y N°Columnas Debe Ser Igual ", 1);
+                    } else {
+                        Helper.letraR(tblTablaInicial, tblTablaResultado);
+                    }
                     break;
                 case 10:
-                    Helper.figuraCruz(tblTablaInicial, tblTablaResultado);
-                    break;
+                    if (nf % 2 != 0) {
+                        Helper.mensaje(this, "Para Ver Mejor La Figura Cruz El N°Filas y N°Columnas Deben Ser Pares ", 1);
+                    }
+                    if (nf != nc) {
+                        Helper.mensaje(this, "Para Ver Mejor La Figura De Cruz El N°Filas y N°Columnas Debe Ser Igual ", 1);
+                    } else {
+                        Helper.figuraCruz(tblTablaInicial, tblTablaResultado);
+                        break;
+                    }
 
             }
         }
