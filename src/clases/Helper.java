@@ -182,6 +182,34 @@ public class Helper {
         }
     }
 
+    public static void figura1(JTable tabla1, JTable tabla2) {
+        int nf, nc, aux;
+        nc = tabla1.getColumnCount();
+        nf = tabla1.getRowCount();
+        for (int i = 0; i < nf; i++) {
+            for (int j = 0; j < nc; j++) {
+                aux = (int) tabla1.getValueAt(i, j);
+                if ((i <= j && nc - 1 - i >= j) || (i > j && nf - 1 - i <= j)) {
+                    tabla2.setValueAt(aux, i, j);
+                }
+            }
+        }
+    }
+
+    public static void figura2(JTable tabla1, JTable tabla2) {
+        int nf, nc, aux;
+        nc = tabla1.getColumnCount();
+        nf = tabla1.getRowCount();
+        for (int i = 0; i < nf; i++) {
+            for (int j = 0; j < nc; j++) {
+                aux = (int) tabla1.getValueAt(i, j);
+                if ((j <= i && nf - 1 - j >= i) || (j > i && nf - 1 - j < i)) {
+                    tabla2.setValueAt(aux, i, j);
+                }
+            }
+        }
+    }
+
     public static void figuraCruz(JTable tabla1, JTable tabla2) {
         int nf, nc, aux;
         nc = tabla1.getColumnCount();
@@ -190,6 +218,20 @@ public class Helper {
             for (int j = 0; j < nc; j++) {
                 aux = (int) tabla1.getValueAt(i, j);
                 if (i == nf / 2 || i == nf / 2 - 1 || j == nc / 2 || j == nc / 2 - 1) {
+                    tabla2.setValueAt(aux, i, j);
+                }
+            }
+        }
+    }
+
+    public static void figuraRombo(JTable tabla1, JTable tabla2) {
+        int nf, nc, aux;
+        nc = tabla1.getColumnCount();
+        nf = tabla1.getRowCount();
+        for (int i = 0; i < nf; i++) {
+            for (int j = 0; j < nc; j++) {
+                aux = (int) tabla1.getValueAt(i, j);
+                if ((i == j - nf / 2) || (nf / 2 - i == j) || (nf - i + nf / 2 - 1 == j) || (i == j + nf / 2)) {
                     tabla2.setValueAt(aux, i, j);
                 }
             }

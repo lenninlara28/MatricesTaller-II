@@ -387,17 +387,42 @@ public class Principal extends javax.swing.JFrame {
                         Helper.letraR(tblTablaInicial, tblTablaResultado);
                     }
                     break;
+                case 8:
+                    if (nf % 2 != 0) {
+                        Helper.mensaje(this, "Para Ver Mejor La Figura 1 El N°Filas Debe Ser Par y N°Columnas Debe Ser El Antecesor A Ese Numero ", 1);
+                    } else if (nc != nf - 1) {
+                        Helper.mensaje(this, "Para Ver Mejor La Figura 1 El N°Columnas Debe Ser El Antecesor A El N°Filas ", 1);
+                    } else {
+                        Helper.figura1(tblTablaInicial, tblTablaResultado);
+                    }
+                    break;
+                case 9:
+                    if (nf % 2 == 0) {
+                        Helper.mensaje(this, "Para Ver Mejor La Figura 2 El N°Filas Debe Ser Impar y N°Columnas Debe Ser El Sucesor A Ese Numero ", 1);
+                    } else if (nc != nf + 1) {
+                        Helper.mensaje(this, "Para Ver Mejor La Figura 2 El N°Columnas Debe Ser El Sucesor A El N°Filas ", 1);
+                    } else {
+                        Helper.figura2(tblTablaInicial, tblTablaResultado);
+                    }
+                    break;
                 case 10:
                     if (nf % 2 != 0) {
                         Helper.mensaje(this, "Para Ver Mejor La Figura Cruz El N°Filas y N°Columnas Deben Ser Pares ", 1);
-                    }
-                    if (nf != nc) {
+                    } else if (nf != nc) {
                         Helper.mensaje(this, "Para Ver Mejor La Figura De Cruz El N°Filas y N°Columnas Debe Ser Igual ", 1);
                     } else {
                         Helper.figuraCruz(tblTablaInicial, tblTablaResultado);
                         break;
                     }
-
+                case 11:
+                    if (nf != nc) {
+                        Helper.mensaje(this, "Para Ver Mejor La Figura Rombo El N°Filas y N°Columnas Debe Ser Igual ", 1);
+                    } else if (nf % 2 == 0) {
+                        Helper.mensaje(this, "Para Ver Mejor La Figura Rombo El N°Filas Debe Ser Impar ", 1);
+                    } else {
+                        Helper.figuraRombo(tblTablaInicial, tblTablaResultado);
+                        break;
+                    }
             }
         }
     }//GEN-LAST:event_cmdOperacionesActionPerformed
